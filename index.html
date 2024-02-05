@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-COMMERCE I</title>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="addProduct(event)" id="products">
+        <input type="text" id="name" placeholder="Enter product name"><br><br>
+        <input type="text" id="category" placeholder="Enter product category"><br><br>
+        <input type="url" id="image" placeholder="Enetr img link"><br><br>
+        <input type="text" id="price" placeholder="enter price"><br><br>
+        <select id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br><br>
+        <input type="radio" id="sold" value="false" onclick="returnPro()">Product sold <br><br>
+        <input type="submit" value="Add product" id="add">
+        </form>
+    </div>
+</body>
+</html>
+<script>
+
+ let array=JSON.parse(localStorage.getItem("Products"))||[];
+ function returnPro(){
+     let a=document.querySelector("#sold").value=true;
+     return a;
+ }
+
+ function addProduct(e){
+     e.preventDefault();
+     let form=document.querySelector("#products");
+     let name=form.name.value;
+     let category=form.category.value;
+     let image=form.image.value;
+     let price=form.price.value;
+     let gender=form.gender.value;
+     let sold=form.sold.value;
+     let add= new functionProd(name,category,image,price,gender,sold);
+     array.push(add);
+     localStorage.setItem("Products",JSON.stringify(array));
+ }
+
+ function functionProd(name,category,image,price,gender,sold){
+     this.name=name,
+     this.category=category,
+     this.image=image,
+     this.price=price,
+     this.gender=gender,
+     this.sold=sold
+ }
+</script>
